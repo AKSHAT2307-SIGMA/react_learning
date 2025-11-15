@@ -23,18 +23,25 @@ function App() {
       .finally(() => setLoading(false))
   }, [dispatch])
 
-  return !loading ? (
+  return (
     <div className="min-h-screen flex flex-col bg-gray-400">
-      <div>Test</div>
-      <div className="w-full-block">
-        {/* <Header /> */}
-        <main>
-          <h1>Welcome to MegaBlog</h1>
-        </main>
-        {/* <Footer /> */}
-      </div>
+      {loading ? (
+        <div className="flex-1 flex items-center justify-center">
+          <h1 className="text-3xl font-bold text-white">Loading...</h1>
+        </div>
+      ) : (
+        <div className="w-full-block">
+          <Header />
+          <main className="py-8">
+            <div className="container mx-auto">
+              <Outlet />
+            </div>
+          </main>
+          <Footer />
+        </div>
+      )}
     </div>
-  ) : null
+  )
 }
 
 export default App
